@@ -22,12 +22,8 @@ def create_task():
         return jsonify({'error': 'error in data occurred'})
 
 
-def get_task():
-    request_json = request.get_json()
-    if 'taskId' in request_json:
-        return dumps({'task': db.tasks.find_one({'_id': ObjectId(request_json['taskId'])})})
-    else:
-        return jsonify({'error': 'taskId is not found'})
+def get_task(task_id):
+    return dumps({'task': db.tasks.find_one({'_id': ObjectId(task_id)})})
 
 
 def delete_task(task_id):
@@ -36,10 +32,6 @@ def delete_task(task_id):
          'task_count': db.tasks.delete_one({'_id': ObjectId(task_id)}).deleted_count,
          }
     )
-
-
-def tasks_info(task_id):
-    return dumps(db.tasks.find_one({'_id': ObjectId(task_id)}))
 
 
 def update_task(task_id):
