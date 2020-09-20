@@ -44,9 +44,9 @@ def update_task(task_id):
 
 def tasks_list():
     data = request.values
-    if 'datetime' in data:
+    if 'start' in data:
         return dumps(
-            {'tasks': db.tasks.find({'datetime': data['datetime']})}
+            {'tasks': db.tasks.find({'start': data['start']})}
         )
     else:
         return jsonify({'error': 'datetime is not found'})

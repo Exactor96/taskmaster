@@ -1,4 +1,4 @@
-TASK_REQUIRED_FIELDS = ('datetime', 'title',)
+TASK_REQUIRED_FIELDS = ('name', 'start',)
 
 
 def task_validation(task_data: dict) -> bool:
