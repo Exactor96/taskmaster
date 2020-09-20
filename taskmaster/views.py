@@ -44,12 +44,12 @@ def update_task(task_id):
 
 def tasks_list():
     data = request.values
-    if 'start' in data:
+    if 'weekStart' in data and 'weekEnd' in data:
         return dumps(
-            {'tasks': db.tasks.find({'start': data['start']})}
+            {'tasks': db.tasks.find({'start': {'$gte': data['weekStart'], 'weekEnd': {'$lte': data['weekEnd']}}})}
         )
     else:
-        return jsonify({'error': 'datetime is not found'})
+        return jsonify({'error': 'Not found'})
 
 
 def test():
